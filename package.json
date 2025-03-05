@@ -1,0 +1,32 @@
+{
+  "name": "se-traning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "clean": "rmdir /s /q build",
+    "prebuild": "npm run clean && npm run lint",
+    "build": "tsc",
+    "postbuild": "powershell -Command \"Write-Host 'Finished build with size:'; (Get-ChildItem -Recurse build | Measure-Object -Property Length -Sum).Sum / 1MB -as [int]\"",
+    "prestart": "npm run build",
+    "start": "node build/index.js",
+    "debug": "npx tsc -p c:/Development/youniss-cohort-0/tsconfig.json",
+    "dev": "ts-node-dev --respawn src/index.ts"
+  },
+  "keywords": [],
+  "author": "Youniss Jaafil",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
